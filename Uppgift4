@@ -1,4 +1,4 @@
-//Eric Buxton och Maja Nyberg
+// Eric Buxton och Maja Nyberg
 
 // Question 4
 
@@ -19,7 +19,7 @@ function get_dtmf_frequencies(number) {
             
             return n === counter
             ? head(ys)
-            : freq(tail(ys),n, counter + 1);
+            : freq(tail(ys), n, counter + 1);
         }
         
         return freq(lists, number, 0);
@@ -54,9 +54,9 @@ function dial_all(list_of_numbers) {
     // your answer here
 
     function filtration(list_of_numbers){
-        const wrong = list(0,1,8,4,7,1,5,7,0,4);
+        const not_played = list(0,1,8,4,7,1,5,7,0,4);
         
-        return !equal(list_of_numbers, wrong);
+        return !equal(list_of_numbers, not_played);
         
     }
         

@@ -1,3 +1,5 @@
+//Eric Buxton och Maja Nyberg
+
 // Question 1
 
 // Function type: Number -> pair_of_numbers
@@ -7,6 +9,7 @@
 // and 12 - 15 represent the letters A-D.
 
 function get_dtmf_frequencies(number) {
+    
     const lists = list(pair(941, 1336),pair(697, 1209), 
     pair(697, 1336), pair(697, 1477), 
     pair(770, 1209), pair(770, 1336),  
@@ -17,15 +20,13 @@ function get_dtmf_frequencies(number) {
     pair(852, 1633), pair(941, 1633));
     
         function freq(ys, n, counter){
+            
             return n === counter
             ? head(ys)
             : freq(tail(ys),n, counter + 1);
         }
+        
         return freq(lists, number, 0);
-    
-
-
-
 
 }
-get_dtmf_frequencies(12);
+get_dtmf_frequencies(2);

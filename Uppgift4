@@ -53,8 +53,7 @@ function dial_all(list_of_numbers) {
     //conditional expression
     //if state
     
-    const list_of_sounds = list();
-
+    const filtered_list = list();
     
     
     function list_sum(list_of_numbers){
@@ -64,13 +63,13 @@ function dial_all(list_of_numbers) {
     function filtration(list_of_numbers, filtered_list_of_numbers){
         return is_null(list_of_numbers)
         ? filtered_list_of_numbers
-        : list_sum(head(list_of_numbers)) === 37
+        : list_sum(head(list_of_numbers)) === 37 && length(head(list_of_numbers)) === 10
         ? filtration(tail(list_of_numbers), filtered_list_of_numbers)
-        : filtration(tail(list_of_numbers), append(filtered_list_of_numbers, head(list_of_numbers)));
+        : filtration(tail(list_of_numbers), append(append(filtered_list_of_numbers, head(list_of_numbers)), list(11)));
     }
+        
     
-    
-    const new_list_of_numbers = filtration(list_of_numbers, list_of_sounds);
+    const new_list_of_numbers = filtration(list_of_numbers, filtered_list);
     return dial(new_list_of_numbers);
     }
     //const sum = list_sum(list_of_numbers);

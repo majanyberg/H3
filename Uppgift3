@@ -1,0 +1,41 @@
+function get_dtmf_frequencies(number) {
+    const lists = list(pair(941, 1336),pair(697, 1209), 
+    pair(697, 1336), pair(697, 1477), 
+    pair(770, 1209), pair(770, 1336),  
+    pair(770, 1477), pair(852, 1209), 
+    pair(852, 1336), pair(852, 1477), 
+    pair(941, 1209), pair(941, 1477), 
+    pair(697, 1633), pair(770, 1633), 
+    pair(852, 1633), pair(941, 1633));
+    
+        function freq(ys, n, counter){
+            return n === counter
+            ? head(ys)
+            : freq(tail(ys),n, counter + 1);
+        }
+        return freq(lists, number, 0);
+    
+}
+function make_dtmf_tone(frequency_pair) {
+    // your answer here
+    const sound1 = sine_sound(head(frequency_pair), 0.5);
+    const sound2 = sine_sound(tail(frequency_pair), 0.5);
+    const list_of_sounds = list(sound1, sound2);
+    
+    return simultaneously(list_of_sounds);
+
+}
+
+function dial(list_of_digits) {
+    const list_of_sounds = list();
+    function dialing(list_of_digits, counter, list_of_sounds) {
+        return is_null(list_of_digits)
+        ? list_of_sounds
+        : dialing(tail(list_of_digits), counter + 1, append((list_of_sounds, list(make_dtmf_tone(get_dtmf_frequencies(head(list_of_digits))))));
+    }
+    const new_list_of_sounds = dialing(list_of_digits, 0, list_of_sounds);
+    return consecutively(new_list_of_sounds);
+}
+
+// Test
+play(dial(list(6,2,3,5,8,5,7,7)));

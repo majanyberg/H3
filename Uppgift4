@@ -54,26 +54,24 @@ function dial_all(list_of_numbers) {
     //if state
     
     const list_of_sounds = list();
+
     
     
-    function filter(pred, list_of_numbers, filtered_list_of_numbers){
+    function list_sum(list_of_numbers){
+        return accumulate((x,y) => x + y, 0, list_of_numbers);
+    }
+   
+    function filtration(list_of_numbers, filtered_list_of_numbers){
         return is_null(list_of_numbers)
         ? filtered_list_of_numbers
-        : pred(accumulate((x,y) => x + y, 0, head(list_of_numbers)))
-        ? filter(pred, tail(list_of_numbers), filtered_list_of_numbers)
-        : filter(pred, tail(list_of_numbers), append(filtered_list_of_numbers, head(list_of_numbers)));
+        : list_sum(head(list_of_numbers)) === 37
+        ? filtration(tail(list_of_numbers), filtered_list_of_numbers)
+        : filtration(tail(list_of_numbers), append(filtered_list_of_numbers, head(list_of_numbers)));
     }
     
     
-    //function list_sum(list_of_numbers){
-        //return accumulate((x,y) => x + y, 0, list_of_numbers);
-        
-    //function accumulate(f, initial, xs){
-        //return is_null(xs)
-        //? initial
-        //: f(head(head(xs)), accumulate(f, initial, head(tail(xs))));
-        const new_list_of_numbers = filter(x => x === 34, list_of_numbers, list_of_sounds);
-    return new_list_of_numbers;
+    const new_list_of_numbers = filtration(list_of_numbers, list_of_sounds);
+    return dial(new_list_of_numbers);
     }
     //const sum = list_sum(list_of_numbers);
     //return sum;
@@ -81,7 +79,7 @@ function dial_all(list_of_numbers) {
     
     
 
-dial_all(list(list(0,1,8,4,7,1,5,7,0,4),list(6,2,3,5,8,5,7,7),list(0,0,8,6,1,3,7,7,0,9,5,0,0,6,1)));
+play(dial_all(list(list(0,1,8,4,7,1,5,7,0,4),list(6,2,3,5,8,5,7,7),list(0,0,8,6,1,3,7,7,0,9,5,0,0,6,1))));
 // Test
 // play(dial_all(
 //  list(

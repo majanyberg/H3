@@ -31,7 +31,7 @@ function dial(list_of_digits) {
     function dialing(list_of_digits, counter, list_of_sounds) {
         return is_null(list_of_digits)
         ? list_of_sounds
-        : dialing(tail(list_of_digits), counter + 1, append((list_of_sounds, list(make_dtmf_tone(get_dtmf_frequencies(head(list_of_digits))))));
+        : dialing(tail(list_of_digits), counter + 1, append(list_of_sounds, list(make_dtmf_tone(get_dtmf_frequencies(head(list_of_digits))))));
     }
     const new_list_of_sounds = dialing(list_of_digits, 0, list_of_sounds);
     return consecutively(new_list_of_sounds);

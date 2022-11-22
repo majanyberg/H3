@@ -1,3 +1,5 @@
+//Eric Buxton och Maja Nyberg
+
 // Question 2
 
 // Copy your function get_dtmf_frequencies here.
@@ -13,10 +15,12 @@ function get_dtmf_frequencies(number) {
     pair(852, 1633), pair(941, 1633));
     
         function freq(ys, n, counter){
+            
             return n === counter
             ? head(ys)
             : freq(tail(ys),n, counter + 1);
         }
+        
         return freq(lists, number, 0);
     
 }
